@@ -6,5 +6,8 @@
  * 4. Copy firebase init with config from firebase project settings into a file firebase.init.js
  * 5. Export default app
  * 6. Import app firebase init.js into your app.js
- * 7. Import getAuth from firebase/auth and create auth = getAuth(app)
+ * 7. Import getAuth from firebase/auth and create auth = getAuth(app).
+ * 8. Turn on google authentication (firebase > authentication > enable google sign in).
+ * 9. Create google provider.
+ * 10. 
  */

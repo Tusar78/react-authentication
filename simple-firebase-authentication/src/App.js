@@ -38,7 +38,7 @@ function App() {
       <div className="m-12">
         {!user.email ? (
           <button
-            className="px-6 py-2 bg-blue-600 text-white rounded-md focus:ring-2 ring-offset-2 ring-blue-300"
+            className="px-6 py-2 bg-blue-500 text-white rounded-md focus:ring-2 ring-offset-2 ring-blue-300"
             onClick={handleSignIn}
           >
             Sign in Google
@@ -63,6 +63,14 @@ function App() {
         ) : (
           ""
         )}
+      </div>
+
+      <div className="m-12">
+        <button
+          className="px-6 py-2 bg-black text-white rounded-md focus:ring-2 ring-offset-2 ring-gray-800"
+        >
+          Sign in Github
+        </button>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import app from "./firebase.init";
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -11,7 +12,9 @@ function App() {
   const [user, setUser] = useState({});
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
-  const handleSignIn = () => {
+  const githubProvider = new GithubAuthProvider();
+
+  const handleSignInGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
@@ -20,8 +23,19 @@ function App() {
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
-      });
+    });
   };
+
+  const handleSignInGithub = () => {
+    signInWithPopup(auth, githubProvider)
+      .then(result => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  }
 
   const handleSignOut = () => {
     signOut(auth)
@@ -29,7 +43,7 @@ function App() {
         setUser({});
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
       });
   };
 
@@ -39,7 +53,7 @@ function App() {
         {!user.email ? (
           <button
             className="px-6 py-2 bg-blue-500 text-white rounded-md focus:ring-2 ring-offset-2 ring-blue-300"
-            onClick={handleSignIn}
+            onClick={handleSignInGoogle}
           >
             Sign in Google
           </button>
@@ -58,7 +72,9 @@ function App() {
             <p className="border-b border-blue-300 pb-2">
               Name: {user.displayName}
             </p>
-            <p className="border-b border-blue-300 pb-2">Email: {user.email}</p>
+            <p className="border-b border-blue-300 pb-2">
+              Email: {user.email}
+            </p>
           </div>
         ) : (
           ""
@@ -66,11 +82,19 @@ function App() {
       </div>
 
       <div className="m-12">
-        <button
+        <button 
           className="px-6 py-2 bg-black text-white rounded-md focus:ring-2 ring-offset-2 ring-gray-800"
+          onClick={handleSignInGithub}        
         >
           Sign in Github
         </button>
+
+        <div className="mt-4 w-96 p-4 border rounded-md space-y-4">
+          <img src={user.photoURL} alt={user.displayName} />
+          <p className="border-b border-blue-300 pb-2">
+            Name: {user.displayName}
+          </p>
+        </div>
       </div>
     </>
   );

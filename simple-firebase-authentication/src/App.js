@@ -17,7 +17,6 @@ function App() {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -53,13 +52,17 @@ function App() {
             Sign Out
           </button>
         )}
-        <div className="mt-4 w-96 p-4 border rounded-md space-y-4">
-          <img src={user?.photoURL} alt={user.displayName} />
-          <p className="border-b border-blue-300 pb-2">
-            Name: {user.displayName}
-          </p>
-          <p className="border-b border-blue-300 pb-2">Email: {user.email}</p>
-        </div>
+        {user.email ? (
+          <div className="mt-4 w-96 p-4 border rounded-md space-y-4">
+            <img src={user?.photoURL} alt={user.displayName} />
+            <p className="border-b border-blue-300 pb-2">
+              Name: {user.displayName}
+            </p>
+            <p className="border-b border-blue-300 pb-2">Email: {user.email}</p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

@@ -86,22 +86,6 @@ function App() {
           ""
         )}
       </div>
-
-      {/* <div className="m-12">
-        <button
-          className="px-6 py-2 bg-black text-white rounded-md focus:ring-2 ring-offset-2 ring-gray-800"
-          onClick={handleSignInGithub}
-        >
-          Sign in Github
-        </button>
-
-        <div className="mt-4 w-96 p-4 border rounded-md space-y-4">
-          <img src={user.photoURL} alt={user.displayName} />
-          <p className="border-b border-blue-300 pb-2">
-            Name: {user.displayName}
-          </p>
-        </div>
-      </div> */}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -13,6 +14,7 @@ const LogIn = () => {
   const [user, setUser] = useState({});
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
@@ -25,6 +27,17 @@ const LogIn = () => {
         console.error(error.message);
       });
   };
+
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then(result => {
+        const user = result.user;
+        setUser(user)
+      })
+      .catch(error => {
+        console.error(error.message)
+      })
+  }
 
   const handleSignOut = () => {
     signOut(auth)
@@ -66,7 +79,7 @@ const LogIn = () => {
             <button>
               <FaTwitter className="text-5xl border p-2 rounded-md shadow text-[#00acee]" />
             </button>
-            <button>
+            <button onClick={handleGithubSignIn}>
               <FaGithub className="text-5xl border p-2 rounded-md shadow" />
             </button>
           </div>

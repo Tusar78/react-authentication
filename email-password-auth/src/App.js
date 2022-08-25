@@ -1,12 +1,57 @@
+import { useState } from "react";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from "./firebase.init";
+
+const auth = getAuth(app);
+
 function App() {
-  const handleBlur = e => {
-    console.log(e.target.value);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [validate, setValidate] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleEmailBlur = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordBlur = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleValidate = e => {
+    const regEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!regEx.test(e.target.value)) {
+      console.log('Yes');
+      setError(false)
+    } else {
+      setError(true)
+    }
   }
 
-  const handleSubmit = event => {
-    console.log('Form Submitted!');
+
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-  }
+
+    const regEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!regEx.test(password)) {
+      setValidate(
+        "Minimum eight characters, at least one letter and one number"
+      );
+      return;
+    }
+    setValidate(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   return (
     <>
       <div className="max-w-screen-lg w-full mx-auto flex justify-center mt-6">
@@ -25,10 +70,10 @@ function App() {
               <input
                 type="email"
                 name="email"
-                id="email"                
+                id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                 placeholder="name@company.com"
-                onBlur={handleBlur}
+                onBlur={handleEmailBlur}
               />
             </div>
             <div>
@@ -43,9 +88,13 @@ function App() {
                 name="password"
                 id="password"
                 placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
-                onBlur={handleBlur}
+                className={error ? "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none" : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none ring-2 ring-red-500"}
+                onBlur={handlePasswordBlur}
+                onChange={handleValidate}
               />
+              <p className="text-red-500">
+                <small>{validate}</small>
+              </p>
             </div>
             <div className="flex items-start">
               <div className="flex items-start">

@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import app from "./firebase.init";
 
 const auth = getAuth(app);
@@ -45,16 +51,44 @@ function App() {
     }
     setValidate(true);
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
+    if (register) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          setError("");
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              console.log("Send verification sms to your mail");
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    }
   };
 
+  const handleResetPass = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log('Send to your mail!');
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  }
   return (
     <>
       <div className="max-w-screen-lg w-full mx-auto flex justify-center mt-6">
@@ -123,6 +157,7 @@ function App() {
                   {register ? "You can register" : "Already Register?"}
                 </label>
               </div>
+
               <a
                 href="/"
                 className="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
@@ -130,13 +165,12 @@ function App() {
                 Lost Password?
               </a>
             </div>
+            <p className="text-red-500">{error}</p>
             <button
               type="submit"
               className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              {
-                register ? 'Sign In' : 'Register'
-              }
+              {register ? "Sign In" : "Register"}
             </button>
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Not registered?{" "}
@@ -147,6 +181,13 @@ function App() {
                 Create account
               </a>
             </div>
+
+            <button 
+              className="bg-blue-100 text-blue-500 px-6 py-2 rounded"
+              onClick={handleResetPass}
+            >
+              Forgot password
+            </button>
           </form>
         </div>
       </div>

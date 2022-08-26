@@ -1,12 +1,21 @@
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
 import { Form, Button } from "react-bootstrap";
 import "./App.css";
 
 function App() {
-  const [toggle, SetToggle] = useState(false);
+  const [toggle, SetToggle] = useState(true);
+  const [validated, setValidated] = useState(false)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault(); 
+      e.stopPropagation();     
+    }
+
+    setValidated(true);
   };
 
   const handleSignInSignUp = (e) => {
@@ -24,36 +33,56 @@ function App() {
               magni.
             </p>
           </div>
-          <Form onSubmit={handleSubmit}>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             {toggle ? (
               <div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Control type="email" placeholder="Email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="Password" required />
                 </Form.Group>
               </div>
             ) : (
               <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
-                  <Form.Control type="text" placeholder="Username" />
+                  <Form.Control type="text" placeholder="Username" required />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Control type="email" placeholder="Email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="Password" required />
                 </Form.Group>
               </div>
             )}
 
-            <Button variant="light" type="submit" className="form__btn">
+            <Button variant="primary" type="submit" className="form__btn">
               {toggle ? "LogIn" : "Register"}
             </Button>
+
+            {toggle ? (
+              <div className="signIn-buttons">
+                <button className="signIn signIn-google">
+                  Sing in with Google
+                  <FcGoogle className="singIn-icon" />
+                </button>
+                <button className="signIn signIn-facebook">
+                  Sing in with Facebook
+                  <AiFillFacebook className="singIn-icon signIn-icon-facebook" />
+                </button>
+                <button className="signIn signIn-github">
+                  Sing in with Github
+                  <AiFillGithub className="singIn-icon" />
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
 
             <div className="form__toggle">
               <p>

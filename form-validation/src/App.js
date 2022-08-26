@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
@@ -47,11 +48,23 @@ function App() {
           .then((result) => {
             const user = result.user;
             console.log(user);
+            emailVerifiedSMS();
           })
           .catch((error) => {
             const errorMessage = error.message;
             console.log(errorMessage);
           });
+  };
+
+  // Email Verified Message
+  const emailVerifiedSMS = () => {
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        console.log("Email Send your mail!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (

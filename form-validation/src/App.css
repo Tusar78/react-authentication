@@ -1,0 +1,72 @@
+.form-section {
+  background-color: #5EA5FC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 350px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15), 0 1px 10px rgba(0,0,0,.10);
+  padding: 4rem 2rem;
+  border-radius: .4rem;
+}
+
+.form__head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form__title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: .2rem;
+}
+
+.form__subtitle {
+  font-size: 14px;
+  color: #666;
+}
+
+.form__btn {
+  width: 100%;
+  background-color: rgb(90, 93, 225);
+  color: #fff;
+}
+
+.form__btn:hover {
+  background-color: #4e50c4;
+  color: #fff;
+}
+
+.form__toggle {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__toggle p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.form__sign-checkbox {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.form__sign-in-out {
+  font-size: 14px;
+  color: #4e50c4;
+  padding-left: .2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form__sign-in-out:hover {
+  text-decoration: underline;
+}

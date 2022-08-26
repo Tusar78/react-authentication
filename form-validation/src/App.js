@@ -1,25 +1,43 @@
 import { useState } from "react";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
 import { Form, Button } from "react-bootstrap";
+import app from "./firebase.init";
 import "./App.css";
 
+// Create Auth
+const auth = getAuth(app);
+
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [toggle, SetToggle] = useState(true);
-  const [validated, setValidated] = useState(false)
-
-  const handleSubmit = (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault(); 
-      e.stopPropagation();     
-    }
-
-    setValidated(true);
-  };
+  const [validated, setValidated] = useState(false);
 
   const handleSignInSignUp = (e) => {
     SetToggle(e.target.checked);
+  };
+
+  const handleEmailBlur = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordBlur = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setValidated(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      })
   };
 
   return (
@@ -41,7 +59,11 @@ function App() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control type="password" placeholder="Password" required />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                  />
                 </Form.Group>
               </div>
             ) : (
@@ -52,11 +74,21 @@ function App() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="Email" required />
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    onBlur={handleEmailBlur}
+                    required
+                  />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control type="password" placeholder="Password" required />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onBlur={handlePasswordBlur}
+                    required
+                  />
                 </Form.Group>
               </div>
             )}

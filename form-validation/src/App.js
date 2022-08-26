@@ -4,6 +4,7 @@ import {
   getAuth,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
@@ -15,20 +16,26 @@ import "./App.css";
 const auth = getAuth(app);
 
 function App() {
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [toggle, SetToggle] = useState(true);
+  const [toggle, setToggle] = useState(true);
   const [validated, setValidated] = useState(false);
 
   const handleSignInSignUp = (e) => {
-    SetToggle(e.target.checked);
+    setToggle(e.target.checked);
   };
 
   const handleEmailBlur = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePasswordBlur = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleNameBlur = (e) => {
+    setDisplayName(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -49,6 +56,7 @@ function App() {
             const user = result.user;
             console.log(user);
             emailVerifiedSMS();
+            profileUpdate()
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -65,6 +73,18 @@ function App() {
       .catch((error) => {
         console.log(error.message);
       });
+  };
+
+  // Update Profile
+  const profileUpdate = () => {
+    updateProfile(auth.currentUser, {
+      displayName: displayName,
+    }).then(() => {
+      console.log('Set displayName');
+    }).catch(error => {
+      console.log(error.message);
+    })
+      
   };
 
   return (
@@ -96,7 +116,12 @@ function App() {
             ) : (
               <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
-                  <Form.Control type="text" placeholder="Username" required />
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    onBlur={handleNameBlur}
+                    required
+                  />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
 

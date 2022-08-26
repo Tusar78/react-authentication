@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
 import { Form, Button } from "react-bootstrap";
@@ -29,15 +33,25 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setValidated(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      })
+    toggle
+      ? signInWithEmailAndPassword(auth, email, password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage);
+          })
+      : createUserWithEmailAndPassword(auth, email, password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage);
+          });
   };
 
   return (

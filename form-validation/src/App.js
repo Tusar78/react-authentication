@@ -199,7 +199,7 @@ function App() {
                 Sing in with Facebook
                 <AiFillFacebook className="singIn-icon signIn-icon-facebook" />
               </button>
-              <button className="signIn signIn-github">
+              <button className="signIn signIn-github" onClick={handleGithubAuth}>
                 Sing in with Github
                 <AiFillGithub className="singIn-icon" />
               </button>

@@ -113,6 +113,19 @@ function App() {
         console.log(error.message);
       });
   };
+  
+  const handleGithubAuth = () => {
+    // Github Auth
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
 
   return (
     <>

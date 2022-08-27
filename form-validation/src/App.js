@@ -2,9 +2,11 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   sendEmailVerification,
   signInWithEmailAndPassword,
   updateProfile,
+  signInWithPopup
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
@@ -43,10 +45,18 @@ function App() {
     setDisplayName(e.target.value);
   };
 
+  // Create Google Auth Provider
+  const googleProvider = new GoogleAuthProvider();
+  
   // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    setValidated(true);
+    setValidated(true); 
+    signInWithPopup(auth, googleProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
     toggle
       ? signInWithEmailAndPassword(auth, email, password)
           .then((result) => {

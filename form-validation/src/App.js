@@ -178,7 +178,7 @@ function App() {
 
           {toggle ? (
             <div className="signIn-buttons">
-              <button className="signIn signIn-google">
+              <button className="signIn signIn-google" onClick={handleGoogleAuth}>
                 Sing in with Google
                 <FcGoogle className="singIn-icon" />
               </button>

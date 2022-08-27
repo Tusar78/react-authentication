@@ -58,7 +58,8 @@ function App() {
         console.log(user);
       })
       .catch(error => {
-        console.log(error.message);
+        const errorMessage = error.message;
+        console.log(errorMessage);
       })
     toggle
       ? signInWithEmailAndPassword(auth, email, password)

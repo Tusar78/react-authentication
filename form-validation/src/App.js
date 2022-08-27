@@ -16,28 +16,34 @@ import "./App.css";
 const auth = getAuth(app);
 
 function App() {
+  // Useful States
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [toggle, setToggle] = useState(true);
   const [validated, setValidated] = useState(false);
 
+  // Sign In and Sign Up
   const handleSignInSignUp = (e) => {
     setToggle(e.target.checked);
   };
 
+  // Email Blur Function
   const handleEmailBlur = (e) => {
     setEmail(e.target.value);
   };
 
+  // Password Blur Function
   const handlePasswordBlur = (e) => {
     setPassword(e.target.value);
   };
 
+  // Name Blur Function
   const handleNameBlur = (e) => {
     setDisplayName(e.target.value);
   };
 
+  // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setValidated(true);
@@ -56,7 +62,7 @@ function App() {
             const user = result.user;
             console.log(user);
             emailVerifiedSMS();
-            profileUpdate()
+            profileUpdate();
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -79,12 +85,13 @@ function App() {
   const profileUpdate = () => {
     updateProfile(auth.currentUser, {
       displayName: displayName,
-    }).then(() => {
-      console.log('Set displayName');
-    }).catch(error => {
-      console.log(error.message);
     })
-      
+      .then(() => {
+        console.log("Set displayName");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (

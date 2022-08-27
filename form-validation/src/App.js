@@ -71,6 +71,9 @@ function App() {
         const user = result.user;
         console.log(user);
       })
+      .catch(error => {
+        console.log(error.message);
+      })
     toggle
       ? signInWithEmailAndPassword(auth, email, password)
           .then((result) => {

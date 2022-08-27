@@ -6,7 +6,8 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   updateProfile,
-  signInWithPopup
+  signInWithPopup,
+  GithubAuthProvider
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
@@ -45,9 +46,10 @@ function App() {
     setDisplayName(e.target.value);
   };
 
-  // Create Google Auth Provider
+  // Create Auth Providers
   const googleProvider = new GoogleAuthProvider();
-  
+  const githubProvider = new GithubAuthProvider();
+
   // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();

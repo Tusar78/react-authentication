@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   signInWithPopup,
-  GithubAuthProvider
+  GithubAuthProvider,
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
@@ -50,31 +50,23 @@ function App() {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
+  const handleGoogleAuth = () => {
+    // Google Auth
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    setValidated(true); 
-    // Google Auth
-    signInWithPopup(auth, googleProvider)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      })
-
-    // Github Auth
-    signInWithPopup(auth, githubProvider)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      })
+    setValidated(true);    
     toggle
       ? signInWithEmailAndPassword(auth, email, password)
           .then((result) => {
@@ -179,47 +171,44 @@ function App() {
                 </Form.Group>
               </div>
             )}
-
-            <Button variant="primary" type="submit" className="form__btn">
-              {toggle ? "LogIn" : "Register"}
-            </Button>
-
-            {toggle ? (
-              <div className="signIn-buttons">
-                <button className="signIn signIn-google">
-                  Sing in with Google
-                  <FcGoogle className="singIn-icon" />
-                </button>
-                <button className="signIn signIn-facebook">
-                  Sing in with Facebook
-                  <AiFillFacebook className="singIn-icon signIn-icon-facebook" />
-                </button>
-                <button className="signIn signIn-github">
-                  Sing in with Github
-                  <AiFillGithub className="singIn-icon" />
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-
-            <div className="form__toggle">
-              <p>
-                {toggle ? `don't have and account yet?` : "have an account?"}
-              </p>
-              <div>
-                <input
-                  type="checkbox"
-                  id="sign-in-out"
-                  className="form__sign-checkbox"
-                  onChange={handleSignInSignUp}
-                />
-                <label htmlFor="sign-in-out" className="form__sign-in-out">
-                  {toggle ? "Sign Up" : "Sign In"}
-                </label>
-              </div>
-            </div>
           </Form>
+          <Button variant="primary" type="submit" className="form__btn">
+            {toggle ? "LogIn" : "Register"}
+          </Button>
+
+          {toggle ? (
+            <div className="signIn-buttons">
+              <button className="signIn signIn-google">
+                Sing in with Google
+                <FcGoogle className="singIn-icon" />
+              </button>
+              <button className="signIn signIn-facebook">
+                Sing in with Facebook
+                <AiFillFacebook className="singIn-icon signIn-icon-facebook" />
+              </button>
+              <button className="signIn signIn-github">
+                Sing in with Github
+                <AiFillGithub className="singIn-icon" />
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+
+          <div className="form__toggle">
+            <p>{toggle ? `don't have and account yet?` : "have an account?"}</p>
+            <div>
+              <input
+                type="checkbox"
+                id="sign-in-out"
+                className="form__sign-checkbox"
+                onChange={handleSignInSignUp}
+              />
+              <label htmlFor="sign-in-out" className="form__sign-in-out">
+                {toggle ? "Sign Up" : "Sign In"}
+              </label>
+            </div>
+          </div>
         </div>
       </section>
     </>

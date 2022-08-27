@@ -54,6 +54,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setValidated(true); 
+    // Google Auth
     signInWithPopup(auth, googleProvider)
       .then(result => {
         const user = result.user;
@@ -62,6 +63,13 @@ function App() {
       .catch(error => {
         const errorMessage = error.message;
         console.log(errorMessage);
+      })
+
+    // Github Auth
+    signInWithPopup(auth, githubProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
       })
     toggle
       ? signInWithEmailAndPassword(auth, email, password)

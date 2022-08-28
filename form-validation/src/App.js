@@ -49,12 +49,29 @@ function App() {
 
   // Create Auth Providers
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
   const faceboProvider = new FacebookAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleAuth = () => {
     // Google Auth
     signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
+  const handleFacebookAuth = () => {
+    // Facebook Auth
+  }
+
+  const handleGithubAuth = () => {
+    // Github Auth
+    signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -114,20 +131,7 @@ function App() {
       .catch((error) => {
         console.log(error.message);
       });
-  };
-  
-  const handleGithubAuth = () => {
-    // Github Auth
-    signInWithPopup(auth, githubProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
-  };
+  };    
 
   return (
     <>

@@ -67,6 +67,11 @@ function App() {
 
   const handleFacebookAuth = () => {
     // Facebook Auth
+    signInWithPopup(auth, faceboProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
   }
 
   const handleGithubAuth = () => {

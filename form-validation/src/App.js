@@ -211,7 +211,7 @@ function App() {
                 Sing in with Google
                 <FcGoogle className="singIn-icon" />
               </button>
-              <button className="signIn signIn-facebook">
+              <button className="signIn signIn-facebook" onClick={handleFacebookAuth}>
                 Sing in with Facebook
                 <AiFillFacebook className="singIn-icon signIn-icon-facebook" />
               </button>

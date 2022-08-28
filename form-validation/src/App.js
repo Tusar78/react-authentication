@@ -8,6 +8,7 @@ import {
   updateProfile,
   signInWithPopup,
   GithubAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook, AiFillGithub } from "react-icons/ai";
@@ -49,6 +50,7 @@ function App() {
   // Create Auth Providers
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const faceboProvider = new FacebookAuthProvider();
 
   const handleGoogleAuth = () => {
     // Google Auth
@@ -184,10 +186,11 @@ function App() {
                 </Form.Group>
               </div>
             )}
-          </Form>
-          <Button variant="primary" type="submit" className="form__btn">
+            <Button variant="primary" type="submit" className="form__btn">
             {toggle ? "LogIn" : "Register"}
           </Button>
+          </Form>
+          
 
           {toggle ? (
             <div className="signIn-buttons">

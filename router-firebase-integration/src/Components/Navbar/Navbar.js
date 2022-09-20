@@ -16,6 +16,9 @@ const Navbar = () => {
           </ul>
         </div>
 
+        <button className='nav__toggle'>
+          
+        </button>
       </nav>
     </div>
   );

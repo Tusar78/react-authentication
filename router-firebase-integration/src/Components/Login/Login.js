@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <div className='section'>
       <div className="register custom-grid">
-        <h2 className="register__title">Login.</h2>
+        <h2 className="login__title">Login.</h2>
 
         <div className="register__form">
           <form className="form">
@@ -26,7 +26,7 @@ const Login = () => {
               />
             </div>            
             <div className="register__form-control">
-              <button type="submit" className="btn btn-register">Login</button>
+              <button type="submit" className="btn btn-login">Login</button>
             </div>
           </form>
         </div>

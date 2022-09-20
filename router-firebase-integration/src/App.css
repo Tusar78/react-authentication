@@ -14,8 +14,33 @@
   }
 
   .nav {
-    @apply h-16 ;
+    @apply h-16 grid-cols-2 items-center;
   }
+
+  .nav__logo {
+    @apply text-[18px] tracking-widest font-semibold;
+  }
+
+  .nav__menu {
+    @apply fixed top-16 -right-full p-4 bg-slate-100 w-full duration-500 sm:static sm:p-0 sm:bg-white sm:w-min sm:justify-self-end;
+  }
+
+  .nav__list {
+    @apply flex flex-col sm:flex-row sm:space-x-8;
+  }
+
+  .nav__item {
+    @apply p-2 hover:bg-[#fff1c5] sm:p-0;
+  }
+
+  .nav__toggle {
+    @apply justify-self-end sm:hidden cursor-pointer;
+  }
+
+  .nav__toggle-icon {
+    @apply text-2xl text-gray-600 cursor-pointer;
+  }
+
 }
 
 @layer utilities {

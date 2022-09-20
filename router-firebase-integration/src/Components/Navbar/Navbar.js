@@ -16,27 +16,27 @@ const Navbar = () => {
         <div className={toggle ? "nav__menu right-0" : "nav__menu"}>
           <ul className="nav__list">
             <li className="nav__item">
-              <ActiveLink to="/home" className="nav__link">
+              <ActiveLink to="/home" className="nav__link" onClick={() => setToggle(false)}>
                 Home
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink to="/product" className="nav__link">
+              <ActiveLink to="/product" className="nav__link" onClick={() => setToggle(false)}>
                 Product
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink to="/order" className="nav__link">
+              <ActiveLink to="/order" className="nav__link" onClick={() => setToggle(false)}>
                 Order
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink to="/register" className="nav__link">
+              <ActiveLink to="/register" className="nav__link" onClick={() => setToggle(false)}>
                 Register
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink to="/login" className="nav__link">
+              <ActiveLink to="/login" className="nav__link" onClick={() => setToggle(false)}>
                 Login
               </ActiveLink>
             </li>

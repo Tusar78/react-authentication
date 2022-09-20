@@ -1,40 +1,44 @@
 import React, { useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
+import ActiveLink from "../ActiveLink/ActiveLink";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <div className="navbar">
       <nav className="nav custom-grid">
-        <h1 className="nav__logo">RFI</h1>
+        <h1 className="nav__logo">
+          <Link to="/">RFI</Link>
+        </h1>
 
         <div className={toggle ? "nav__menu right-0" : "nav__menu"}>
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="/" className="nav__link">
+              <ActiveLink to="/home" className="nav__link">
                 Home
-              </a>
+              </ActiveLink>
             </li>
             <li className="nav__item">
-              <a href="/" className="nav__link">
+              <ActiveLink to="/product" className="nav__link">
                 Product
-              </a>
+              </ActiveLink>
             </li>
             <li className="nav__item">
-              <a href="/" className="nav__link">
+              <ActiveLink to="/order" className="nav__link">
                 Order
-              </a>
+              </ActiveLink>
             </li>
             <li className="nav__item">
-              <a href="/" className="nav__link">
+              <ActiveLink to="/register" className="nav__link">
                 Register
-              </a>
+              </ActiveLink>
             </li>
             <li className="nav__item">
-              <a href="/" className="nav__link">
+              <ActiveLink to="/login" className="nav__link">
                 Login
-              </a>
+              </ActiveLink>
             </li>
           </ul>
         </div>

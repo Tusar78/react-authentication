@@ -7,7 +7,7 @@ const Register = () => {
         <h2 className="register__title">Registration.</h2>
 
         <div className="register__form">
-          <form>
+          <form className="form">
             <div className="register__form-control">
               <label htmlFor="email" className="register__label">
                 Email <span className="text-red-500">*</span>
@@ -35,6 +35,9 @@ const Register = () => {
                 name="confirmedPassword"
                 id="confirmedPassword"
               />
+            </div>
+            <div className="register__form-control">
+              <button type="submit" className="btn btn-register">Register</button>
             </div>
           </form>
         </div>

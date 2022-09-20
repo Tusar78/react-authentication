@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   return (
-    <div className='section'>
+    <div className="section">
       <div className="register custom-grid">
         <h2 className="login__title">Login.</h2>
 
@@ -12,7 +13,12 @@ const Login = () => {
               <label htmlFor="email" className="register__label">
                 Email <span className="text-red-500">*</span>
               </label>
-              <input className="register__input" type="email" name="email" id="email" />
+              <input
+                className="register__input"
+                type="email"
+                name="email"
+                id="email"
+              />
             </div>
             <div className="register__form-control">
               <label htmlFor="password" className="register__label">
@@ -24,9 +30,16 @@ const Login = () => {
                 name="password"
                 id="password"
               />
-            </div>            
+            </div>
             <div className="register__form-control">
-              <button type="submit" className="btn btn-login">Login</button>
+              <button className="register__google">
+                <FcGoogle className="register__google-icon" /> Login with google
+              </button>
+            </div>
+            <div className="register__form-control">
+              <button type="submit" className="btn btn-login">
+                Login
+              </button>
             </div>
           </form>
         </div>

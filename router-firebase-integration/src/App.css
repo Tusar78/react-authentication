@@ -75,6 +75,10 @@
     @apply bg-purple-500 text-white font-medium uppercase;
   }
 
+  .register__google {
+    @apply flex items-center justify-center gap-2 p-2 border rounded;
+  }
+
 }
 
 @layer utilities {

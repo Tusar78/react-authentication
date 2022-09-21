@@ -10,7 +10,7 @@ const Order = () => {
           <ul className="order__list">
             <li className="order__item">Hp Monitor</li>
             <li className="order__item">Intel Core i5 6485</li>
-            <li className="order__item">Micromax Sound System</li>
+            <li className="order__item">MicroMax Sound System</li>
           </ul>
         </div>
       </div>

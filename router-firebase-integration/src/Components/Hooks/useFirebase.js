@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    
-  }, [])
+  const googleSignIn = () => {
+    console.log('Processing to sign in google');
+  }
 
-  return [user, setUser];
+  return {
+    user,
+    googleSignIn,
+    setUser
+  };
 }
 
 export default useFirebase;

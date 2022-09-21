@@ -6,17 +6,22 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../../Firebase/firebase.init";
+import { useNavigate } from "react-router-dom";
 
 const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
+  console.log(user);
+
+  const navigate = useNavigate();
 
   const googleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setUser(user);
+        navigate('/')
       })
       .catch((error) => {
         console.log(error.message);
@@ -36,7 +41,7 @@ const useFirebase = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        navigate('/login')
       })
       .catch((error) => {
         console.log(error.message);

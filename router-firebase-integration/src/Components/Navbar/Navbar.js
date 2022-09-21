@@ -8,7 +8,7 @@ import useFirebase from "../Hooks/useFirebase";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const { user, handleLogout } = useFirebase();
-  
+
   return (
     <div className="navbar">
       <nav className="nav custom-grid">
@@ -56,7 +56,12 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               {user?.uid ? (
-                <button className="nav__link" onClick={ handleLogout }>Logout</button>
+                <div className="flex items-center">
+                  <img className="w-10 h-10 rounded-md mr-3" src={user?.photoURL} alt="user?.displayName" />
+                  <button className="nav__link" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
               ) : (
                 <ActiveLink
                   to="/login"

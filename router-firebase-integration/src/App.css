@@ -26,7 +26,7 @@
   }
 
   .nav__list {
-    @apply flex flex-col sm:flex-row sm:space-x-8;
+    @apply flex flex-col sm:flex-row sm:space-x-8 sm:items-center;
   }
 
   .nav__item {

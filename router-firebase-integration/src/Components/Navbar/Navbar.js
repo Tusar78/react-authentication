@@ -22,7 +22,15 @@ const Navbar = () => {
     });
   }, []);
 
-  
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="navbar">

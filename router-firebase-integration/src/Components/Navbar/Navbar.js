@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
@@ -9,7 +9,7 @@ import useFirebase from "../Hooks/useFirebase";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { user } = useFirebase();
+  const { handleLogout } = useFirebase();
   const [myUser, setMyUser] = useState();
 
   useEffect(() => {
@@ -20,17 +20,7 @@ const Navbar = () => {
         setMyUser({});
       }
     });
-  }, []);
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+  }, []);  
 
   return (
     <div className="navbar">
@@ -79,7 +69,7 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               {myUser?.uid ? (
-                <button className="nav__link" onClick={handleLogout}>Logout</button>
+                <button className="nav__link" onClick={ handleLogout }>Logout</button>
               ) : (
                 <ActiveLink
                   to="/login"

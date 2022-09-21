@@ -11,7 +11,7 @@ const Home = () => {
         <h2 className="home__title">Welcome to RFI</h2>
 
         <div className="user">
-          {user.uid ? (
+          {user ? (
             <>
               <img
                 src={user?.photoURL}

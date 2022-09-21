@@ -12,7 +12,6 @@ const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  console.log(user);
 
   const navigate = useNavigate();
 

@@ -79,7 +79,7 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               {myUser?.uid ? (
-                <button className="nav__link">Logout</button>
+                <button className="nav__link" onClick={handleLogout}>Logout</button>
               ) : (
                 <ActiveLink
                   to="/login"

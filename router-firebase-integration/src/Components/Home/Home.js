@@ -1,8 +1,9 @@
 import React from "react";
-import useFirebase from "../Hooks/useFirebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../Firebase/firebase.init";
 
 const Home = () => {
-  const { user } = useFirebase();
+  const [ user ] = useAuthState(auth);
 
   return (
     <section className="section">

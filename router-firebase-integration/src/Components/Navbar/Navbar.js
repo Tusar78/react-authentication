@@ -1,27 +1,14 @@
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
-import auth from "../../Firebase/firebase.init";
 import ActiveLink from "../ActiveLink/ActiveLink";
 import useFirebase from "../Hooks/useFirebase";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { handleLogout } = useFirebase();
-  const [myUser, setMyUser] = useState();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setMyUser(user);
-      } else {
-        setMyUser({});
-      }
-    });
-  }, []);  
-
+  const { user, handleLogout } = useFirebase();
+  
   return (
     <div className="navbar">
       <nav className="nav custom-grid">
@@ -68,7 +55,7 @@ const Navbar = () => {
               </ActiveLink>
             </li>
             <li className="nav__item">
-              {myUser?.uid ? (
+              {user?.uid ? (
                 <button className="nav__link" onClick={ handleLogout }>Logout</button>
               ) : (
                 <ActiveLink

@@ -1,8 +1,9 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import useFirebase from "../Hooks/useFirebase";
 
 const Login = () => {
-
+  const { googleSignIn } = useFirebase();
   const handleSubmit = e => {
     e.preventDefault();
   }
@@ -37,7 +38,7 @@ const Login = () => {
               />
             </div>
             <div className="register__form-control">
-              <button className="register__google">
+              <button className="register__google" onClick={googleSignIn}>
                 <FcGoogle className="register__google-icon" /> Login with google
               </button>
             </div>

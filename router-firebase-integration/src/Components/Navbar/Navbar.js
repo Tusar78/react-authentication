@@ -3,9 +3,11 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import ActiveLink from "../ActiveLink/ActiveLink";
+import useFirebase from "../Hooks/useFirebase";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { user, handleSingOut } = useFirebase();
 
   return (
     <div className="navbar">
@@ -53,13 +55,19 @@ const Navbar = () => {
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink
-                to="/login"
-                className="nav__link"
-                onClick={() => setToggle(false)}
-              >
-                Login
-              </ActiveLink>
+              {user?.uid ? (
+                <button onClick={handleSingOut}>Logout</button>
+              ) : (
+                <>
+                  <ActiveLink
+                    to="/login"
+                    className="nav__link"
+                    onClick={() => setToggle(false)}
+                  >
+                    Login
+                  </ActiveLink>
+                </>
+              )}
             </li>
           </ul>
         </div>

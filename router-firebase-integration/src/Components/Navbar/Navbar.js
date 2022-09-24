@@ -56,7 +56,10 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               {user?.uid ? (
-                <button onClick={handleSingOut}>Logout</button>
+                <div className="flex items-center">
+                  <img className="w-10 h-10" src={user?.photoURL} alt="userPhoto" />
+                  <button onClick={handleSingOut}>Logout</button>
+                </div>
               ) : (
                 <>
                   <ActiveLink

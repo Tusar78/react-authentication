@@ -3,14 +3,28 @@ import { FcGoogle } from "react-icons/fc";
 // import useFirebase from "../Hooks/useFirebase";
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../Firebase/firebase.init";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   // const { googleSignIn } = useFirebase();
   const [ signInWithGoogle ] = useSignInWithGoogle(auth)
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location?.state?.from?.pathname || '/';
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {
+        navigate(from, {replace: true})
+      })
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
   }
+
+  
 
   return (
     <div className="section">
@@ -42,7 +56,7 @@ const Login = () => {
               />
             </div>
             <div className="register__form-control">
-              <button className="register__google" onClick={() => signInWithGoogle()}>
+              <button className="register__google" onClick={handleGoogleSignIn}>
                 <FcGoogle className="register__google-icon" /> Login with google
               </button>
             </div>

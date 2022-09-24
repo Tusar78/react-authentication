@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import auth from "../../Firebase/firebase.init";
 import ActiveLink from "../ActiveLink/ActiveLink";
 import useFirebase from "../Hooks/useFirebase";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { user, handleSingOut } = useFirebase();
+  const { handleSingOut } = useFirebase();
+  const [user] = useAuthState(auth);
 
   return (
     <div className="navbar">

@@ -1,9 +1,13 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import useFirebase from "../Hooks/useFirebase";
+// import useFirebase from "../Hooks/useFirebase";
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from "../../Firebase/firebase.init";
 
 const Login = () => {
-  const { googleSignIn } = useFirebase();
+  // const { googleSignIn } = useFirebase();
+  const [ signInWithGoogle ] = useSignInWithGoogle(auth)
+
   const handleSubmit = e => {
     e.preventDefault();
   }
@@ -38,7 +42,7 @@ const Login = () => {
               />
             </div>
             <div className="register__form-control">
-              <button className="register__google" onClick={googleSignIn}>
+              <button className="register__google" onClick={() => signInWithGoogle()}>
                 <FcGoogle className="register__google-icon" /> Login with google
               </button>
             </div>

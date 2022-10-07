@@ -11,19 +11,7 @@ const Home = () => {
         <h2 className="home__title">Welcome to RFI</h2>
 
         <div className="user">
-          {/* {user ? (
-            <>
-              <img
-                src={user?.photoURL}
-                alt={user?.displayName}
-                className="user__img"
-              />
-              <h3>Name: {user?.displayName}</h3>
-              <p>Email: {user?.email}</p>
-            </>
-          ) : (
-            ""
-          )} */}
+         
         </div>
       </div>
     </section>

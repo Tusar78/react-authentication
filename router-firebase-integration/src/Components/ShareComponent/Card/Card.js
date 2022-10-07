@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({user}) => {
-  const {id, name, email} = user || user[0] || {};
-  console.log(id);
+const Card = ({ user, children }) => {
+  const { id, name, email } = user || user[0] || {};
+  const { username, phone, company } = children || {};
   return (
     <>
       <Link
@@ -15,14 +15,33 @@ const Card = ({user}) => {
         </span>
 
         <div className="mt-4 text-gray-500 sm:pr-8">
-          <img className="w-8 h-8 sm:w-10 sm:h-10" src="https://i.ibb.co/9sY24xD/user-1.png" alt="user icon" />
+          <img
+            className={
+              children
+                ? "w-8 h-8 sm:w-24 sm:h-24 mx-auto"
+                : "w-8 h-8 sm:w-10 sm:h-10"
+            }
+            src="https://i.ibb.co/9sY24xD/user-1.png"
+            alt="user icon"
+          />
+          <p className="text-center text-purple-400">{username}</p>
 
           <h5 className="mt-4 text-[18px] font-semibold text-gray-900">
-            {name}
+            {children ? <>Name: {name}</> : <>{name}</>}
           </h5>
 
           <p className="mt-2 hidden text-sm sm:block">
-            {email}
+            {children ? <>Email: {email}</> : <>{email}</>}
+          </p>
+          <p className="mt-2 hidden text-sm sm:block">
+            {
+              children ? <>Company: {company}</> : ''
+            }
+          </p>
+          <p className="mt-2 hidden text-sm sm:block">
+            {
+              children ? <>Phone: {phone}</> : ''
+            }
           </p>
         </div>
       </Link>

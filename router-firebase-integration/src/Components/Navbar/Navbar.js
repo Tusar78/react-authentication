@@ -44,15 +44,6 @@ const Navbar = () => {
               </ActiveLink>
             </li>
             <li className="nav__item">
-              <ActiveLink
-                to="/register"
-                className="nav__link"
-                onClick={() => setToggle(false)}
-              >
-                Register
-              </ActiveLink>
-            </li>
-            <li className="nav__item">
               {/* {user?.uid ? (
                 <div className="flex items-center">
                   <img className="w-10 h-10" src={user?.photoURL} alt="userPhoto" />
@@ -61,11 +52,11 @@ const Navbar = () => {
               ) : ( */}
                 <>
                   <ActiveLink
-                    to="/login"
+                    to="/signIn"
                     className="nav__link"
                     onClick={() => setToggle(false)}
                   >
-                    Login
+                    SignIn
                   </ActiveLink>
                 </>
               {/* )} */}

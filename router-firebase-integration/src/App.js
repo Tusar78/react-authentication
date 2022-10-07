@@ -4,8 +4,8 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Product from "./Components/Product/Product";
 import Register from "./Components/Register/Register";
+import UserDetails from "./Components/UserDetails/UserDetails";
 import Users from "./Components/Users/Users";
-// import RequireAuth from "./Components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/user/:userId" element={<UserDetails />} />
         <Route path="/product" element={<Product />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

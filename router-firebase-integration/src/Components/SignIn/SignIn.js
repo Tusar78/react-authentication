@@ -173,7 +173,8 @@ const SignIn = () => {
           </p>
 
           {
-            createUser && <p className="text-green-400">User created successfully~</p>
+            !signIn ? createUser && <p className="text-green-400">User created successfully~</p> : ''
+            
           }
 
           <div className="flex items-center justify-between">

@@ -128,8 +128,18 @@ const SignIn = () => {
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               {signIn ? "No account? " : "You have already account? "}
-              <input className="hidden" type="checkbox" id="loginRegister" onChange={() => {setSignIn(!signIn)}} />
-              <label className="underline cursor-pointer" htmlFor="loginRegister">
+              <input
+                className="hidden"
+                type="checkbox"
+                id="loginRegister"
+                onChange={() => {
+                  setSignIn(!signIn);
+                }}
+              />
+              <label
+                className="underline cursor-pointer"
+                htmlFor="loginRegister"
+              >
                 {signIn ? "Sign Up" : "Sign In"}
               </label>
             </p>

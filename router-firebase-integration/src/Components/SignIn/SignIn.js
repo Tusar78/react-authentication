@@ -1,20 +1,40 @@
 import React from "react";
 import { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../Firebase/firebase.init";
 
 const SignIn = () => {
   const [signIn, setSignIn] = useState(false);
+  const [createError, setCreateError] = useState('');
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
     confirmedPass: "",
   });
 
+  const [
+    createUserWithEmailAndPassword,
+    createUser,
+    createLoading,
+    hooksError,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
   const handleFormInput = (event) => {
-    console.log(event.target);
+    userInfo[event.target.name] = event.target.value;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (userInfo.password !== userInfo.confirmedPass) {
+      setCreateError(`Password can't mass!`);
+      return;
+    }
+
+    if (userInfo) {
+      setCreateError('');
+      createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+    }
+    console.log(userInfo);
   };
 
   return (
@@ -146,6 +166,11 @@ const SignIn = () => {
               </div>
             </div>
           )}
+          <p className="text-red-400">
+            {
+              hooksError ? hooksError.message : createError
+            }
+          </p>
 
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">

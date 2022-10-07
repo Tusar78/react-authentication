@@ -172,6 +172,10 @@ const SignIn = () => {
             }
           </p>
 
+          {
+            createUser && <p className="text-green-400">User created successfully~</p>
+          }
+
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               {signIn ? "No account? " : "You have already account? "}

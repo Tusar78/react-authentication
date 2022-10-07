@@ -1,10 +1,11 @@
-import { isUWP } from "@firebase/util";
 import React from "react";
 import { useState } from "react";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../Firebase/firebase.init";
 
 const SignIn = () => {
@@ -45,6 +46,17 @@ const SignIn = () => {
     }
     console.log(userInfo);
   };
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [myUser] = useAuthState(auth);
+
+  let from = location.state?.from?.pathname || '';
+
+  if (myUser) {
+    navigate(from, {replace: true});
+  }
+  
 
   return (
     <section className="signIn custom-grid">

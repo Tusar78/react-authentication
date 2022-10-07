@@ -53,12 +53,12 @@ const Navbar = () => {
               </ActiveLink>
             </li>
             <li className="nav__item">
-              {user?.uid ? (
+              {/* {user?.uid ? (
                 <div className="flex items-center">
                   <img className="w-10 h-10" src={user?.photoURL} alt="userPhoto" />
                   <button>Logout</button>
                 </div>
-              ) : (
+              ) : ( */}
                 <>
                   <ActiveLink
                     to="/login"
@@ -68,7 +68,7 @@ const Navbar = () => {
                     Login
                   </ActiveLink>
                 </>
-              )}
+              {/* )} */}
             </li>
           </ul>
         </div>

@@ -3,6 +3,19 @@ import { useState } from "react";
 
 const SignIn = () => {
   const [signIn, setSignIn] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+    confirmedPass: "",
+  });
+
+  const handleFormInput = (event) => {
+    console.log(event.target);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <section className="signIn custom-grid">
@@ -18,7 +31,10 @@ const SignIn = () => {
           </p>
         </div>
 
-        <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mx-auto mt-8 mb-0 max-w-md space-y-4"
+        >
           <div>
             <label htmlFor="email" className="sr-only">
               Email
@@ -27,8 +43,10 @@ const SignIn = () => {
             <div className="relative">
               <input
                 type="email"
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                onBlur={handleFormInput}
+                className="w-full rounded-lg border border-gray-200 p-4 pr-12 text-sm shadow-sm outline-none focus:ring-2 focus:ring-blue-200"
                 placeholder="Enter email"
+                name="email"
               />
 
               <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -57,8 +75,10 @@ const SignIn = () => {
             <div className="relative">
               <input
                 type="password"
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                onBlur={handleFormInput}
+                className="w-full rounded-lg outline-none focus:ring-2 border focus:ring-blue-200 border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 placeholder="Enter password"
+                name="password"
               />
 
               <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -95,8 +115,10 @@ const SignIn = () => {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                  onBlur={handleFormInput}
+                  className="w-full rounded-lg outline-none focus:ring-2 focus:ring-blue-200  border border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Confirmed password"
+                  name="confirmedPass"
                 />
 
                 <span className="absolute inset-y-0 right-4 inline-flex items-center">

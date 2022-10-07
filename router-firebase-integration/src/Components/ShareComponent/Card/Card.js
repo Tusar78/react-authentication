@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({user}) => {
-  const {id, name, email} = user.user;
+  const {id, name, email} = user || user[0] || {};
+  console.log(id);
   return (
     <>
       <Link

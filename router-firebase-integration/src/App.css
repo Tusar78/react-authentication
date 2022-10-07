@@ -79,6 +79,11 @@
     @apply flex items-center justify-center gap-2 p-2 border rounded;
   }
 
+  /* Single User */
+  .users-container {
+    @apply grid-cols-3 gap-4;
+  }
+
 }
 
 @layer utilities {

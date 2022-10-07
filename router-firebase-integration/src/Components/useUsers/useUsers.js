@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
 const useUsers = (url) => {
@@ -8,7 +8,7 @@ const useUsers = (url) => {
     fetch(`${url}`)
       .then(res => res.json())
       .then(data => setUsers(data));
-  }, [])
+  }, [url])
 
   return {
     users,

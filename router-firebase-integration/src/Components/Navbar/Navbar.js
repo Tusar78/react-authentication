@@ -27,11 +27,11 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               <ActiveLink
-                to="/product"
+                to="/users"
                 className="nav__link"
                 onClick={() => setToggle(false)}
               >
-                Product
+                Users
               </ActiveLink>
             </li>
             <li className="nav__item">

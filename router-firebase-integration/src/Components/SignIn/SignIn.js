@@ -1,11 +1,15 @@
+import { isUWP } from "@firebase/util";
 import React from "react";
 import { useState } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import auth from "../../Firebase/firebase.init";
 
 const SignIn = () => {
   const [signIn, setSignIn] = useState(false);
-  const [createError, setCreateError] = useState('');
+  const [createError, setCreateError] = useState("");
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -19,6 +23,9 @@ const SignIn = () => {
     hooksError,
   ] = useCreateUserWithEmailAndPassword(auth);
 
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
   const handleFormInput = (event) => {
     userInfo[event.target.name] = event.target.value;
   };
@@ -30,9 +37,11 @@ const SignIn = () => {
       return;
     }
 
-    if (userInfo) {
-      setCreateError('');
+    if (!signIn) {
+      setCreateError("");
       createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+    } else {
+      signInWithEmailAndPassword(userInfo.email, userInfo.password);
     }
     console.log(userInfo);
   };
@@ -167,15 +176,15 @@ const SignIn = () => {
             </div>
           )}
           <p className="text-red-400">
-            {
-              hooksError ? hooksError.message : createError
-            }
+            {hooksError ? hooksError.message : createError}
           </p>
 
-          {
-            !signIn ? createUser && <p className="text-green-400">User created successfully~</p> : ''
-            
-          }
+          {!signIn
+            ? createUser && (
+                <p className="text-green-400">User created successfully~</p>
+              )
+            : ""}
+          {user && <p className="text-green-400">Login successfully~</p>}
 
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">

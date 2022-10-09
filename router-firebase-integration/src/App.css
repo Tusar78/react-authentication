@@ -17,12 +17,20 @@
     @apply text-[52px] text-blue-400 font-semibold leading-[4.0rem];
   }
 
+  .home__title {
+    @apply text-[28px] text-blue-400 font-semibold text-center;
+  }
+
   .hero__description {
     @apply text-[18px] text-blue-900 mt-4;
   }
 
   .hero__btn {
     @apply text-blue-500 bg-blue-100 px-6 py-2 rounded-md font-medium mt-14;
+  }
+
+  .home {
+    @apply py-16;
   }
 
   /* Navigation */

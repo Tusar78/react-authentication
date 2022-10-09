@@ -19,7 +19,6 @@ const Navbar = () => {
             <li className="nav__item">
               <ActiveLink
                 to="/home"
-                className="nav__link"
                 onClick={() => setToggle(false)}
               >
                 Home
@@ -28,7 +27,6 @@ const Navbar = () => {
             <li className="nav__item">
               <ActiveLink
                 to="/users"
-                className="nav__link"
                 onClick={() => setToggle(false)}
               >
                 Users
@@ -36,30 +34,19 @@ const Navbar = () => {
             </li>
             <li className="nav__item">
               <ActiveLink
-                to="/order"
-                className="nav__link"
+                to="/posts"
                 onClick={() => setToggle(false)}
               >
-                Order
+                Posts
               </ActiveLink>
             </li>
             <li className="nav__item">
-              {/* {user?.uid ? (
-                <div className="flex items-center">
-                  <img className="w-10 h-10" src={user?.photoURL} alt="userPhoto" />
-                  <button>Logout</button>
-                </div>
-              ) : ( */}
-                <>
-                  <ActiveLink
-                    to="/signIn"
-                    className="nav__link"
-                    onClick={() => setToggle(false)}
-                  >
-                    SignIn
-                  </ActiveLink>
-                </>
-              {/* )} */}
+              <ActiveLink
+                to="/signIn"
+                onClick={() => setToggle(false)}
+              >
+                SignIn
+              </ActiveLink>
             </li>
           </ul>
         </div>

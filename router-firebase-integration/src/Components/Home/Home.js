@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <section className="hero-section">
-        <div className="hero-container">
+        <div className="hero-container custom-grid">
           <div className="hero-text">
             <h2 className="hero__title">We Enter to Learn Leave to Achieve</h2>
             <p className="hero__description">
@@ -15,7 +15,7 @@ const Home = () => {
             <button className="hero__btn">Get Started</button>
           </div>
           <div className="hero__img">
-            <img src="" alt="" className="hero-img" />
+            <img src="https://raw.githubusercontent.com/Tusar78/react-authentication/6907773e3b72fb8132c4a53ab224d6caa73dd4b8/router-firebase-integration/src/images/study_one.svg" alt="study img" className="hero-img" />
           </div>
         </div>
       </section>

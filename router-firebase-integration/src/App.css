@@ -8,6 +8,23 @@
     @apply max-w-screen-lg w-full mx-auto grid grid-cols-[100%] px-4;
   }
 
+  /* Hero section */
+  .hero-container  {
+    @apply grid-cols-2 items-center;
+  }
+
+  .hero__title {
+    @apply text-[52px] text-blue-400 font-semibold leading-[4.0rem];
+  }
+
+  .hero__description {
+    @apply text-[18px] text-blue-900 mt-4;
+  }
+
+  .hero__btn {
+    @apply text-blue-500 bg-blue-100 px-6 py-2 rounded-md font-medium mt-14;
+  }
+
   /* Navigation */
   .navbar {
     @apply w-full shadow;
@@ -104,5 +121,15 @@
   button,
   textarea {
     font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .hero-section {
+    width: 100%;
+    background: url('https://raw.githubusercontent.com/Tusar78/react-authentication/main/router-firebase-integration/src/images/grid.png') repeat;
+    background-size: 30px;
+  }
+
+  .hero-container {
+    height: calc(100vh - 64px);
   }
 }

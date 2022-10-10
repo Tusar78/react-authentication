@@ -116,8 +116,13 @@
     @apply pt-16 pb-24;
   }
 
-  .details__title {
+  .details__title,
+  .post__title {
     @apply mb-8;
+  }
+
+  .post__container {
+    @apply gap-8;
   }
 }
 

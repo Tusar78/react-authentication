@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SinglePost = ({user}) => {
-  if (user) {
-    user.length = 10;
-  }
+  const {title, id, body} = user;
   return (
     <>
       <article className="rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8">
@@ -24,20 +22,17 @@ const SinglePost = ({user}) => {
 
           <div className="sm:ml-8">
             <strong className="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white">
-              Episode #101
+              Episode #{id}
             </strong>
 
             <h2 className="mt-4 text-lg font-medium sm:text-xl">
               <Link to="/posts" className="hover:underline">
-                Some Interesting Podcast Title
+                {title.charAt(0).toUpperCase() + title.slice(1)}
               </Link>
             </h2>
 
             <p className="mt-1 text-sm text-gray-700">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam
-              nulla amet voluptatum sit rerum, atque, quo culpa ut
-              necessitatibus eius suscipit eum accusamus, aperiam voluptas
-              exercitationem facere aliquid fuga. Sint.
+              {body}
             </p>
 
             <div className="mt-4 sm:flex sm:items-center sm:gap-2">

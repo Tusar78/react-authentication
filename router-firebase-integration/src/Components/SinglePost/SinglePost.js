@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SinglePost = () => {
+const SinglePost = ({user}) => {
+  if (user) {
+    user.length = 10;
+  }
   return (
     <>
       <article className="rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8">

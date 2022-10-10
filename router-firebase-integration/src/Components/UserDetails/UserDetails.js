@@ -10,7 +10,7 @@ const UserDetails = () => {
   );
   return (
     <section className="user-details custom-grid">
-      <h2 className="text-xl font-medium text-gray-800">User Details</h2>
+      <h2 className="details__title">Student Info.</h2>
 
       <div className="user custom-grid">
         {users?.map((user) => (

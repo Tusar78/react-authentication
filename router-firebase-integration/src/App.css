@@ -17,7 +17,8 @@
     @apply text-[52px] text-blue-400 font-semibold leading-[4.0rem];
   }
 
-  .home__title {
+  .home__title,
+  .details__title {
     @apply text-[28px] text-blue-400 font-semibold text-center;
   }
 
@@ -109,6 +110,14 @@
     @apply grid-cols-3 gap-4;
   }
 
+  /* user details */
+  .user-details  {
+    @apply pt-16 pb-24;
+  }
+
+  .details__title {
+    @apply mb-8;
+  }
 }
 
 @layer utilities {

@@ -111,7 +111,8 @@
 
   /* user details */
   .user-details, 
-  .user-section  {
+  .user-section,
+  .post-section  {
     @apply pt-16 pb-24;
   }
 

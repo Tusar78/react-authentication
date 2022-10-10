@@ -33,7 +33,7 @@ const Home = () => {
       </section>
       <section className="home-section">
         <div className="home">
-          <h2 className="home__title">Our Students</h2>
+          <h2 className="home__title title">Our Students</h2>
           <div className="users-container custom-grid mt-8">
             {users?.map((user) => (
               <SingleUser key={user.id} user={user} />

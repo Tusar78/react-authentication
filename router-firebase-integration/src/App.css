@@ -17,8 +17,7 @@
     @apply text-[52px] text-blue-400 font-semibold leading-[4.0rem];
   }
 
-  .home__title,
-  .details__title {
+  .title {
     @apply text-[28px] text-blue-400 font-semibold text-center;
   }
 
@@ -111,7 +110,8 @@
   }
 
   /* user details */
-  .user-details  {
+  .user-details, 
+  .user-section  {
     @apply pt-16 pb-24;
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SingleUser from "../SingleUsers/SingleUser";
 import useUsers from "../useUsers/useUsers";
 
@@ -8,6 +8,8 @@ const Home = () => {
   if (users) {
     users.length = 6;
   }
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +22,7 @@ const Home = () => {
               Consequuntur quam consectetur dolorum aliquam labore at animi sed,
               ratione magnam odit commodi.
             </p>
-            <button className="hero__btn">Get Started</button>
+            <button className="hero__btn" onClick={() => navigate('/posts')}>Get Started</button>
           </div>
           <div className="hero__img">
             <img

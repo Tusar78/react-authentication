@@ -43,7 +43,7 @@ const Home = () => {
           {/* Load more button */}
           <div className="custom-grid mt-10">
             <Link
-              className="group w-32 transition-all duration-100 hover:w-40 relative inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
+              className="group w-32 transition-all duration-100 hover:w-40 relative inline-flex items-center overflow-hidden rounded bg-blue-100 px-8 py-3 text-blue-500 focus:outline-none focus:ring active:bg-blue-500 active:text-white"
               to="/users"
             >
               <span className="absolute left-0 -translate-x-full transition-transform group-hover:translate-x-4">

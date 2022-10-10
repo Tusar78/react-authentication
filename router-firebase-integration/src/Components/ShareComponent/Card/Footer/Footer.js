@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="bg-blue-50">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex justify-center text-teal-600 text-3xl font-bold tracking-widest">
+        <h2 className="flex justify-center text-amber-400 text-3xl font-bold tracking-widest">
           RFI
-        </div>
+        </h2>
 
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
